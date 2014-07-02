@@ -12,6 +12,7 @@ namespace PixelThingGenerator
 {
     public partial class frmMain : Form
     {
+        private Bitmap _lastResult;
         public frmMain()
         {
             InitializeComponent();
@@ -22,7 +23,8 @@ namespace PixelThingGenerator
             try
             {
                 var generator = new SpaceshipGenerator();
-                picResult.BackgroundImage = generator.Generate();
+                _lastResult = generator.Generate();
+                picResult.BackgroundImage = _lastResult;
             }
             catch (Exception ex)            
             {
@@ -32,7 +34,17 @@ namespace PixelThingGenerator
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            UpdateRandomSeed();
+        }
 
+        private void chkRandom_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateRandomSeed();
+        }
+
+        private void UpdateRandomSeed()
+        {
+            numSeed.ReadOnly = chkRandom.Checked;
         }
     }
 }

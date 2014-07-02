@@ -137,6 +137,7 @@
             this.chkRandom.TabIndex = 8;
             this.chkRandom.Text = "Random seed";
             this.chkRandom.UseVisualStyleBackColor = true;
+            this.chkRandom.CheckedChanged += new System.EventHandler(this.chkRandom_CheckedChanged);
             // 
             // frmMain
             // 
