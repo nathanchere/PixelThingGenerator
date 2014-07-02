@@ -10,6 +10,6 @@ namespace PixelThingGenerator
 {
     public abstract class Generator
     {
-        public abstract Bitmap Generate();
+        public abstract Bitmap Generate(int seed);
     }
 }

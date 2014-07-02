@@ -6,6 +6,12 @@ namespace PixelThingGenerator
 {
     public class SpaceshipGenerator : Generator
     {
+        public SpaceshipGenerator()
+        {
+            _random = new Random(Guid.NewGuid().GetHashCode());
+        }
+        
+        private readonly Random _random;
         private int xy(int x, int y)
         {
             return (y * Width) + x;
@@ -21,11 +27,12 @@ namespace PixelThingGenerator
 
         private const int Width = 12;
         private const int Height = 12;
-        private const int Scale = 3;
+        private const int Scale = 5;
 
-        public override Bitmap Generate()
+        public override Bitmap Generate(int seed = 0)
         {
-            var v = (new Random()).Next(4*1024*1024);
+            var v = seed > 0 ? seed : _random.Next(int.MaxValue);
+
             var solid = new[] {xy(5, 2), xy(5, 3), xy(5, 4), xy(5, 5), xy(5, 9)};
             var body = new[]
             {
@@ -77,19 +84,19 @@ namespace PixelThingGenerator
             {
                 for (var x = 0; x < Width/2; ++x)
                 {
-                    Color color = Color.Black;
+                    Color color = Color.Transparent;
                     switch (ship[xy(x, y)])
                     {
                         case ComponentEnum.Empty:
                             break;
                         case ComponentEnum.Solid:
-                            color = Color.Gray;
+                            color = Color.Black;
                             break;
                         case ComponentEnum.Body:
-                            color = Color.Pink; //; colorBody(x, y);
+                            color = Color.DarkGray; //; colorBody(x, y);
                             break;
                         case ComponentEnum.Cockpit:
-                            color = Color.LemonChiffon; //; colorCockpit(x, y);
+                            color = Color.GreenYellow; //; colorCockpit(x, y);
                             break;
                     }
 
