@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PixelThingGenerator</RootNamespace>
-    <AssemblyName>PixelThingGenerator</AssemblyName>
+    <AssemblyName>PixelThingGenerator.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -76,11 +76,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\PixelThingGenerator\PixelThingGenerator.csproj">
-      <Project>{110B45C4-9AC8-4F86-B206-7008422D5284}</Project>
+      <Project>{2615AC9A-79F0-4798-B2B8-8F2378011731}</Project>
       <Name>PixelThingGenerator</Name>
     </ProjectReference>
   </ItemGroup>
