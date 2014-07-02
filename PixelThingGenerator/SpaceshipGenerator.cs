@@ -27,13 +27,13 @@ namespace PixelThingGenerator
 
         private readonly int[] _solid = { xy(5, 2), xy(5, 3), xy(5, 4), xy(5, 5), xy(5, 9) };
         private readonly int[] _body = { xy(4, 1), xy(5, 1), xy(4, 2), xy(3, 3), xy(4, 3), xy(3, 4), xy(4, 4), xy(2, 5), xy(3, 5), xy(4, 5), xy(1, 6), xy(2, 6), xy(3, 6), xy(1, 7), xy(2, 7), xy(3, 7), xy(1, 8), xy(2, 8), xy(3, 8), xy(1, 9), xy(2, 9), xy(3, 9), xy(4, 9), xy(3, 10), xy(4, 10), xy(5, 10) };
-        private readonly int[] _cockpit = new[] { xy(4, 6), xy(5, 6), xy(4, 7), xy(5, 7), xy(4, 8), xy(5, 8) };            
+        private readonly int[] _cockpit = new[] { xy(4, 6), xy(5, 6), xy(4, 7), xy(5, 7), xy(4, 8), xy(5, 8) };
 
         public override Bitmap Generate()
         {
             var seed = Seed > 0 ? Seed : _random.Next(int.MaxValue);
 
-            var ship = new ComponentEnum[Width*Height];
+            var ship = new ComponentEnum[Width * Height];
 
             // Initialise cells
             for (var i = 0; i < Width * Height; ++i) ship[i] = ComponentEnum.Empty;
@@ -44,13 +44,13 @@ namespace PixelThingGenerator
             // Body border
             for (var y = 0; y < Height; ++y)
             {
-                for (var x = 0; x < Width/2; ++x)
+                for (var x = 0; x < Width * 0.5; ++x)
                 {
                     if (ship[xy(x, y)] == ComponentEnum.Body)
                     {
                         if (y > 0 && ship[xy(x, y - 1)] == ComponentEnum.Empty) ship[xy(x, y - 1)] = ComponentEnum.Solid;
                         if (x > 0 && ship[xy(x - 1, y)] == ComponentEnum.Empty) ship[xy(x - 1, y)] = ComponentEnum.Solid;
-                        if (x < Width/2 - 1 && ship[xy(x + 1, y)] == ComponentEnum.Empty) ship[xy(x + 1, y)] = ComponentEnum.Solid;
+                        if (x < Width / 2 - 1 && ship[xy(x + 1, y)] == ComponentEnum.Empty) ship[xy(x + 1, y)] = ComponentEnum.Solid;
                         if (y < Height - 1 && ship[xy(x, y + 1)] == ComponentEnum.Empty) ship[xy(x, y + 1)] = ComponentEnum.Solid;
                     }
                 }
@@ -58,16 +58,16 @@ namespace PixelThingGenerator
 
             // Render
 
-            var result = new Bitmap(Width*Scale, Height*Scale);
+            var result = new Bitmap(Width * Scale, Height * Scale);
             var canvas = Graphics.FromImage(result);
-            canvas.Clear(Color.Transparent);            
+            canvas.Clear(Color.Transparent);
 
             for (var y = 0; y < Height; ++y)
             {
-                for (var x = 0; x < Width/2; ++x)
+                for (var x = 0; x < Width *0.5; ++x)
                 {
                     Color color = Color.Transparent;
-                    switch (ship[xy(x, y)])
+                    switch (ship[(y * Width) + x])
                     {
                         case ComponentEnum.Empty:
                             break;
@@ -75,44 +75,46 @@ namespace PixelThingGenerator
                             color = Color.Black;
                             break;
                         case ComponentEnum.Body:
-                            color = GetBodyColor(x,y);
+                            color = GetBodyColor(x, y, seed);
                             break;
                         case ComponentEnum.Cockpit:
-                            color = GetCockpitColor(x, y);
+                            color = GetCockpitColor(x, y, seed);
                             break;
                     }
 
                     for (int i = 0; i < Scale; ++i)
-                        for (int j = 0; j < Scale; ++j)
+                    for (int j = 0; j < Scale; ++j)
                     {
-                        result.SetPixel((x * Scale) + i, y * Scale + j, color);
-                        result.SetPixel(Width * Scale - (x + 1) * Scale + i, y * Scale + j, color);
-                    }                    
+                            result.SetPixel((x * Scale) + i, y * Scale + j, color);
+                            result.SetPixel(Width * Scale - (x + 1) * Scale + i, y * Scale + j, color);
+                    }
                 }
             }
 
             return result;
-        }     
-
-        private Color GetBodyColor(int x, int y) {
-          var s = _sats[y]/255.0f;
-          var b = _bris[x]/255.0f;
-          int h;
-
-          if(y < 6)
-            h = (Seed>>8) & 0xFF;
-          else if(y < 9)
-            h = (Seed>>16) & 0xFF;
-          else
-            h = (Seed>>24) & 0xFF;
-          return ColorUtils.HSVtoRGB(360*h/256f, s, b);
         }
 
-        private Color GetCockpitColor(int x, int y) {
-          var s = _sats[y]/255.0f;
-          var b = (_bris[x]+40)/255.0f;
-          var h = Seed & 0xFF;
-          return ColorUtils.HSVtoRGB(360*h/256f, s, b);
+        private Color GetBodyColor(int x, int y, int seed)
+        {
+            var s = _sats[y] / 255.0f;
+            var b = _bris[x] / 255.0f;
+            int h;
+
+            if (y < 6)
+                h = (seed >> 8) & 0xFF;
+            else if (y < 9)
+                h = (seed >> 16) & 0xFF;
+            else
+                h = (seed >> 24) & 0xFF;
+            return ColorUtils.HSVtoRGB(360 * h / 256f, s, b);
+        }
+
+        private Color GetCockpitColor(int x, int y, int seed)
+        {
+            var s = _sats[y] / 255.0f;
+            var b = (_bris[x] + 40) / 255.0f;
+            var h = seed & 0xFF;
+            return ColorUtils.HSVtoRGB(360 * h / 256f, s, b);
         }
     }
 }
