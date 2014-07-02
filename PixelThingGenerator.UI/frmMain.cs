@@ -29,5 +29,10 @@ namespace PixelThingGenerator
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
