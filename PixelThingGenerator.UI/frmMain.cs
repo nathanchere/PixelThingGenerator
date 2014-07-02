@@ -23,6 +23,8 @@ namespace PixelThingGenerator
             try
             {
                 var generator = new SpaceshipGenerator();
+                generator.Scale = (int)numScale.Value;
+                generator.Seed = chkRandom.Checked ? 0 : (int)numSeed.Value;
                 _lastResult = generator.Generate();
                 picResult.BackgroundImage = _lastResult;
             }

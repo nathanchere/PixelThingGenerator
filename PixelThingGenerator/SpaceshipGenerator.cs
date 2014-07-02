@@ -6,11 +6,6 @@ namespace PixelThingGenerator
 {
     public class SpaceshipGenerator : Generator
     {
-        public SpaceshipGenerator() : base()
-        {
-            
-        }
-
         private int xy(int x, int y)
         {
             return (y * Width) + x;
@@ -91,10 +86,10 @@ namespace PixelThingGenerator
                             color = Color.Black;
                             break;
                         case ComponentEnum.Body:
-                            color = Color.DarkGray; //; colorBody(x, y);
+                            color = GetBodyColor(x,y);
                             break;
                         case ComponentEnum.Cockpit:
-                            color = Color.GreenYellow; //; colorCockpit(x, y);
+                            color = GetCockpitColor(x, y);
                             break;
                     }
 
@@ -110,5 +105,29 @@ namespace PixelThingGenerator
             return result;
         }
 
+       
+        private readonly byte[] sats = {40,60,80,100,80,60,80,100,120,100,80,60};
+        private readonly byte[] bris = {40,70,100,130,160,190,220,220,190,160,130,100,70,40};
+
+        private Color GetBodyColor(int x, int y) {
+          var s = sats[y]/255.0f;
+          var b = bris[x]/255.0f;
+          int h;
+
+          if(y < 6)
+            h = (Seed>>8) & 0xFF;
+          else if(y < 9)
+            h = (Seed>>16) & 0xFF;
+          else
+            h = (Seed>>24) & 0xFF;
+          return ColorUtils.HSVtoRGB(360*h/256f, s, b);
+        }
+
+        private Color GetCockpitColor(int x, int y) {
+          var s = sats[y]/255.0f;
+          var b = (bris[x]+40)/255.0f;
+          var h = Seed & 0xFF;
+          return ColorUtils.HSVtoRGB(360*h/256f, s, b);
+        }
     }
 }

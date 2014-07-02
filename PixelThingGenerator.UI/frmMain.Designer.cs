@@ -33,11 +33,11 @@
             this.numSeed = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numScale = new System.Windows.Forms.NumericUpDown();
             this.chkRandom = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScale)).BeginInit();
             this.SuspendLayout();
             // 
             // picResult
@@ -105,22 +105,22 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(49, 44);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numScale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numScale.Location = new System.Drawing.Point(49, 44);
+            this.numScale.Maximum = new decimal(new int[] {
             16,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numScale.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(58, 26);
-            this.numericUpDown1.TabIndex = 5;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numScale.Name = "numScale";
+            this.numScale.Size = new System.Drawing.Size(58, 26);
+            this.numScale.TabIndex = 5;
+            this.numScale.Value = new decimal(new int[] {
             4,
             0,
             0,
@@ -146,7 +146,7 @@
             this.ClientSize = new System.Drawing.Size(280, 390);
             this.Controls.Add(this.chkRandom);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numScale);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numSeed);
             this.Controls.Add(this.btnGenerateSpaceship);
@@ -158,7 +158,7 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picResult)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,7 +171,7 @@
         private System.Windows.Forms.NumericUpDown numSeed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numScale;
         private System.Windows.Forms.CheckBox chkRandom;
     }
 }
