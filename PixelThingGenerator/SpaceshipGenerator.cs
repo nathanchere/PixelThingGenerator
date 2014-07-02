@@ -43,8 +43,6 @@ namespace PixelThingGenerator
             for (var i = 0; i < body.Length; ++i)
                 ship[body[i]] = (v & (1 << i)) == 0 ? ComponentEnum.Body : ComponentEnum.Empty;
 
-
-
             // initialize cockpit cells
             for (var i = 0; i < cockpit.Length; ++i)
                 ship[cockpit[i]] = (v & (1 << (body.Length + i))) == 0 ? ComponentEnum.Solid : ComponentEnum.Cockpit;
@@ -71,9 +69,9 @@ namespace PixelThingGenerator
 
             // Render
 
-            var result = new Bitmap(Width, Height);
+            var result = new Bitmap(Width*Scale, Height*Scale);
             var canvas = Graphics.FromImage(result);
-            canvas.Clear(Color.Transparent);
+            canvas.Clear(Color.Transparent);            
 
             for (var y = 0; y < Height; ++y)
             {
@@ -95,8 +93,12 @@ namespace PixelThingGenerator
                             break;
                     }
 
-                    result.SetPixel(x, y, color);
-                    result.SetPixel(Width - x - 1, y, color);
+                    for (int i = 0; i < Scale; ++i)
+                        for (int j = 0; j < Scale; ++j)
+                    {
+                        result.SetPixel((x * Scale) + i, y * Scale + j, color);
+                        result.SetPixel(Width * Scale - (x + 1) * Scale + i, y * Scale + j, color);
+                    }                    
                 }
             }
 
