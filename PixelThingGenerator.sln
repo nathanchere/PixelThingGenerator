@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelThingGenerator", "PixelThingGenerator\PixelThingGenerator.csproj", "{EB6AFEAA-906B-4AA9-A669-7925C41AB12E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelThingGenerator.UI", "PixelThingGenerator.UI\PixelThingGenerator.UI.csproj", "{20714864-4434-4B12-B1D9-4707F75F4664}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PixelThingGenerator", "PixelThingGenerator\PixelThingGenerator.csproj", "{110B45C4-9AC8-4F86-B206-7008422D5284}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB6AFEAA-906B-4AA9-A669-7925C41AB12E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB6AFEAA-906B-4AA9-A669-7925C41AB12E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB6AFEAA-906B-4AA9-A669-7925C41AB12E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB6AFEAA-906B-4AA9-A669-7925C41AB12E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20714864-4434-4B12-B1D9-4707F75F4664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20714864-4434-4B12-B1D9-4707F75F4664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20714864-4434-4B12-B1D9-4707F75F4664}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20714864-4434-4B12-B1D9-4707F75F4664}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110B45C4-9AC8-4F86-B206-7008422D5284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110B45C4-9AC8-4F86-B206-7008422D5284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110B45C4-9AC8-4F86-B206-7008422D5284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110B45C4-9AC8-4F86-B206-7008422D5284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
