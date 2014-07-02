@@ -6,12 +6,11 @@ namespace PixelThingGenerator
 {
     public class SpaceshipGenerator : Generator
     {
-        public SpaceshipGenerator()
+        public SpaceshipGenerator() : base()
         {
-            _random = new Random(Guid.NewGuid().GetHashCode());
+            
         }
-        
-        private readonly Random _random;
+
         private int xy(int x, int y)
         {
             return (y * Width) + x;
@@ -27,11 +26,10 @@ namespace PixelThingGenerator
 
         private const int Width = 12;
         private const int Height = 12;
-        private const int Scale = 5;
 
-        public override Bitmap Generate(int seed = 0)
+        public override Bitmap Generate()
         {
-            var v = seed > 0 ? seed : _random.Next(int.MaxValue);
+            var v = Seed > 0 ? Seed : _random.Next(int.MaxValue);
 
             var solid = new[] {xy(5, 2), xy(5, 3), xy(5, 4), xy(5, 5), xy(5, 9)};
             var body = new[]
